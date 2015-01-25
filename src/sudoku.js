@@ -8,6 +8,8 @@ var SUDOKU = ( function(){
 	BR5 Numbers must be unique per section
 	**/
 	
+	var self = {};
+	
 	var N = 9;
 	var rows =[];
 	var columns = [];
@@ -69,18 +71,16 @@ var SUDOKU = ( function(){
 	}
 	
 	
-	this.init = function ( config ) {
+	self.init = function ( config ) {
 		
+		console.log('sudokulib init');
 		onSuccesMove = config.succesfulMove ;
 		onfailureMove = config.failureMove ;
 		onCompleted = config.completed;
 		
-		
-		
-
 	};
 	
-	this.setMove  = function ( section , column , row  , value ){
+	self.setMove  = function ( section , column , row  , value ){
 
 		if ( !validateLimits(section )){
 			
@@ -136,5 +136,5 @@ var SUDOKU = ( function(){
 		return;
 	};
 	
-	return this;
+	return self;
 }());
