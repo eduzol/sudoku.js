@@ -16,6 +16,10 @@ td:first-child {
 td:nth-child(3n) {
   border-right:solid ;
 }
+.error {
+ background-color: yellow;
+}
+
 tr:first-child {
   border-top:solid;
 }

@@ -9,11 +9,9 @@ var VIEW = ( function(){
 	};
 	
 	var restore = function (section , row, column , value ){
-		console.log('OLD value  ' + value  );
 		if (!value){
 			value = "&nbsp;";
 		}
-		console.log('value ' + value );
 		var node = $("<span contenteditable='true'>" + value +"</span>");  
 		$(".grid td[data-column='"+column+"'][data-row='"+row+"'][data-section='"+section+"']").empty().append(node);
 
@@ -21,28 +19,30 @@ var VIEW = ( function(){
 	
 	var onFailure = function (result){
 		/* Manipulate DOM */
-		console.log('failure ' , result);
 		var errorCode = result.code ;
 		
 		switch ( errorCode ){
-		/* column validation error */ 
+				/* column validation error */ 
 		case 0 :
-				$(".grid td[data-column='"+result.column+"']").attr("bgcolor", "yellow");
+				var line =$(".grid td[data-column='"+result.column+"']"); 
+				line.toggleClass("error");
 				restore(result.section , result.row, result.column , oldValue );
-				setTimeout(function(){$(".grid td[data-column='"+result.column+"']").attr("bgcolor", "white"); }, 1500);
+				setTimeout(function(){ line.toggleClass("error"); }, 1500);
 				break;
 
 				/* row validation error */ 
 		case 1 :
-				$(".grid td[data-row='"+result.row+"']").attr("bgcolor", "yellow");
+				var line = $(".grid td[data-row='"+result.row+"']");
+				line.toggleClass("error");
 				restore(result.section , result.row, result.column , oldValue );
-				setTimeout(function(){$(".grid td[data-row='"+result.row+"']").attr("bgcolor", "white"); }, 1500);
+				setTimeout(function(){ line.toggleClass("error"); }, 1500);
 				break;
-		
+				/* section validation error  */ 
 		case 2 :
-				$(".grid td[data-section='"+result.section+"']").attr("bgcolor", "yellow");
+				var line = $(".grid td[data-section='"+result.section+"']");
+				line.toggleClass("error");
 				restore(result.section , result.row, result.column , oldValue );
-				setTimeout(function(){$(".grid td[data-section='"+result.section+"']").attr("bgcolor", "white"); }, 1500);
+				setTimeout(function(){ line.toggleClass("error"); }, 1500);
 				break;
 		}
 		
@@ -81,7 +81,6 @@ var VIEW = ( function(){
 			$(this).children('span').text('');
 		}
 		
-		//validate value 
 		console.log("cell was clicked, section  " +section+ " row " + row
 				    + " column " + column + " value " + newValue + " oldValue " + oldValue  ,  cell );
 	
