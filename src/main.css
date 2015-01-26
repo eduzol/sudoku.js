@@ -3,7 +3,7 @@ html {
   font-family: sans-serif, Helvetica;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  background-color: #adadad;
+  background-color: #070716;
 }
 
 table.grid {
@@ -38,6 +38,10 @@ tr:first-child {
 
 tr:nth-child(3n) td {
   border-bottom: solid #1fbad6;
+}
+
+.notEditable {
+  background-color: black;
 }
 
 .invalid {
