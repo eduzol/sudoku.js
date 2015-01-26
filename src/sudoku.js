@@ -67,7 +67,6 @@ var SUDOKU = ( function(){
 	
 	self.init = function ( config ) {
 		
-		console.log('sudokulib init');
 		onSuccesMove = config.succesfulMove ;
 		onfailureMove = config.failureMove ;
 		onCompleted = config.completed;
@@ -105,9 +104,8 @@ var SUDOKU = ( function(){
 		}
 		
 		var validRow  = checkRow(  row , value  );
-		if ( validRow ){
-			//rows[row][value] = true;
-		}else{
+		if ( !validRow ){
+			
 			rowValidationError.value = value;
 			rowValidationError.section = section;
 			rowValidationError.column = column;
@@ -117,9 +115,7 @@ var SUDOKU = ( function(){
 		}
 		
 		var validColumn = checkColumn( column, value);
-		if ( validColumn ){
-			//columns[column][value] =  true;
-		}else{
+		if ( !validColumn ){
 			columnValidationError.value = value;
 			columnValidationError.section = section;
 			columnValidationError.column = column;
@@ -129,9 +125,7 @@ var SUDOKU = ( function(){
 		}
 		
 		var validSection =  checkSection(section , value  );
-		if ( validSection ){
-			//sections[section][value] = true;
-		}else{
+		if ( !validSection ){
 			sectionValidationError.value = value;
 			sectionValidationError.section = section;
 			sectionValidationError.column = column;

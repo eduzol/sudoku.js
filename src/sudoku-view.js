@@ -5,7 +5,7 @@ var VIEW = ( function(){
 	var oldValue = '';
 	
 	var onSuccess  = function (result){
-		console.log('success ' , result);
+		/*console.log('success ' , result);*/
 	};
 	
 	
