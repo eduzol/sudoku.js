@@ -7,5 +7,6 @@ install node , then go to root folder
 -npm install grunt --save-dev
 -npm install grunt-contrib-uglify
 -npm install grunt-contrib-qunit --save-dev
+-npm install grunt-contrib-sass --save-dev
 
 

@@ -1,0 +1,20 @@
+@import 'variables';
+
+html{
+	color : $fontColor;
+	font-family: $font-stack;
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
+	background-color: $appBackgroundColor ;
+}
+
+@import 'grid';
+
+.notEditable{
+ background-color: $nonEditableColor ;
+}
+
+.invalid {
+ background-color: $invalidValue;
+}
+
