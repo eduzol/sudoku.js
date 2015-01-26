@@ -1,0 +1,32 @@
+@import 'variables';
+
+table.grid{
+	
+	border-collapse:collapse;
+	border-spacing:0;
+	margin:1em auto;
+	background-color: $gridBackgroundColor;
+}
+
+td, th {
+	padding:0
+}
+
+td {
+  height: $columnSize;
+  width: $columnSize;
+  border:$borderSize $borderColor;
+  text-align:center;
+}
+td:first-child {
+  border-left:solid  $borderColor;
+}
+td:nth-child(3n) {
+  border-right:solid  $borderColor;
+}
+tr:first-child {
+  border-top:solid  $borderColor;
+}
+tr:nth-child(3n) td {
+  border-bottom:solid  $borderColor ;
+}

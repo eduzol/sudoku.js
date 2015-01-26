@@ -25,24 +25,24 @@ var VIEW = ( function(){
 				/* column validation error */ 
 		case 0 :
 				var line =$(".grid td[data-column='"+result.column+"']"); 
-				line.toggleClass("error");
+				line.toggleClass("invalid");
 				setViewValue(result.section , result.row, result.column , oldValue );
-				setTimeout(function(){ line.toggleClass("error"); }, 1500);
+				setTimeout(function(){ line.toggleClass("invalid"); }, 1500);
 				break;
 
 				/* row validation error */ 
 		case 1 :
 				var line = $(".grid td[data-row='"+result.row+"']");
-				line.toggleClass("error");
+				line.toggleClass("invalid");
 				setViewValue(result.section , result.row, result.column , oldValue );
-				setTimeout(function(){ line.toggleClass("error"); }, 1500);
+				setTimeout(function(){ line.toggleClass("invalid"); }, 1500);
 				break;
 				/* section validation error  */ 
 		case 2 :
 				var line = $(".grid td[data-section='"+result.section+"']");
-				line.toggleClass("error");
+				line.toggleClass("invalid");
 				setViewValue(result.section , result.row, result.column , oldValue );
-				setTimeout(function(){ line.toggleClass("error"); }, 1500);
+				setTimeout(function(){ line.toggleClass("invalid"); }, 1500);
 				break;
 		}
 		
@@ -77,13 +77,9 @@ var VIEW = ( function(){
 		var newValue= String.fromCharCode(charCode);
 		
 		if ( value  && isNumeric ){
-			console.log('enters if ');
 			$(this).children('span').text('');
 		}
-		/*
-		console.log("cell was clicked, section  " +section+ " row " + row
-				    + " column " + column + " value " + newValue + " oldValue " + oldValue  ,  cell );
-		*/
+		
 		SUDOKU.setMove( section ,  row, column,  newValue);
 	
 		

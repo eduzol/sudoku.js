@@ -14,17 +14,30 @@ module.exports = function(grunt) {
       
       }
     }, 
-      qunit: {
+   qunit: {
     		all: ['test/*.html']
-  		}
+  		} ,
+  		
+   sass: {                              // Task
+  		    dist: {                            // Target
+  		      options: {                       // Target options
+  		        style: 'expanded'
+  		      },
+  		      files: {                         // Dictionary of files
+  		    	
+  		        'src/main.css': 'src/main.scss',       // 'destination': 'source'
+  		      }
+  		    }
+  		  }
+
   });
   
    // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-qunit');
-
+  grunt.loadNpmTasks('grunt-contrib-sass');
  
   // Default task(s).
-  grunt.registerTask('default', ['uglify','qunit:all']);
+  grunt.registerTask('default', ['uglify','qunit:all', 'sass']);
   
  }

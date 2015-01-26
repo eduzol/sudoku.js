@@ -63,13 +63,7 @@ var SUDOKU = ( function(){
 			return false;
 		}
 	}
-	/*
-	for ( var i = 0 ; i <= N ; i++){
-		rows[i] = [];
-		columns[i] = [];
-		sections[i] = [];
-	}
-	*/
+	
 	
 	self.init = function ( config ) {
 		
