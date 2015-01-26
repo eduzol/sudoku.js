@@ -42,28 +42,82 @@ QUnit.test( "succesful move", function( assert ) {
 
 QUnit.test( "unsuccesful move", function( assert ) {
 	 
-	var onSucess1 = function( result ){
-		console.log("onSuccess1 Test Result = "+ result.message + " value " + result.value  );
-		assert.ok(false , "onSuccess called");
+	var succesCounter = 0;
+	var onSucess = function( result ){
+		if ( succesCounter > 0 ){
+			console.log("onSuccess1 Test Result = "+ result.message + " value " + result.value  );
+			assert.ok(false , "onSuccess called");	
+		}
+		succesCounter++;
 	};
 	
-	var onFailure1 = function( result ){
+	var onFailure = function( result ){
 		console.log("onFailure1 Test Result = "+ result.message + " value " + result.value  );
 		assert.ok(true, 'onFailure called');
 	};
 	
-	var onCompleted1 = function( result){
+	var onCompleted = function( result){
 		console.log("onCompleted1 Test Result = "+ result.message + " value " + result.value  );
 		assert.ok(false, 'onCompleted called');
 	};
 	
 	SUDOKU.init({
-		succesfulMove : onSucess1 ,
-		failureMove : onFailure1  , 
-		completed : onCompleted1 
+		succesfulMove : onSucess ,
+		failureMove : onFailure  , 
+		completed : onCompleted 
 	});
+	SUDOKU.setMove( 1 , 1, 1, 3);
 	SUDOKU.setMove( 1 , 1, 2, 3);
 	
+	
+	
+});
+
+QUnit.test( "idempotence test", function( assert ) {
+	 
+	var successCounter = 0;
+	var onSucess = function( result ){
+		if ( successCounter > 0 ){	
+			console.log("onSuccess1 Test Result = "+ result.message + " value " + result.value  );
+			assert.ok(false , "onSuccess called");
+		}
+		successCounter++;
+	};
+	
+	var onFailure = function( result ){
+		
+		if ( result.code == 0 )
+		{
+			console.log('Column validation error '+ result.message + " value " + result.value )
+			assert.ok(true, 'Column validation Error');
+			
+		}else{
+			
+			console.log('validation error '+ result.message + " value " + result.value )
+			assert.ok(false, 'Not a column validation error');
+		}
+		
+		
+	};
+	
+	var onCompleted = function( result){
+		console.log("onCompleted1 Test Result = "+ result.message + " value " + result.value  );
+		assert.ok(false, 'onCompleted called');
+	};
+	
+	SUDOKU.init({
+		succesfulMove : onSucess ,
+		failureMove : onFailure  , 
+		completed : onCompleted 
+	});
+	
+	
+	
+	SUDOKU.setMove( 1 ,2, 2, 3);
+	
+	SUDOKU.setMove( 1 ,2, 1, 3);
+	
+	SUDOKU.setMove( 1 ,2, 1, 3);
 	
 	
 });

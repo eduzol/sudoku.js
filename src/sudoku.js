@@ -21,10 +21,10 @@ var SUDOKU = ( function(){
 	
 	var success = {message: "success" , value : ""};
 	
-	var columnValidationError = {   message :"columnValidationError" , value : "" };
-	var rowValidationError = {   message :"rowValidationError" , value : "" };
-	var sectionValidationError = { message : "sectionValidationError" , value : ""};
-	var invalidNumber = { message : "invalidNumber" , value:""};
+	var columnValidationError = {  code : 0,  message :"columnValidationError" , value : "" };
+	var rowValidationError = {  code : 1 , message :"rowValidationError" , value : "" };
+	var sectionValidationError = { code : 2 ,message : "sectionValidationError" , value : ""};
+	var invalidNumber = {code : 3,  message : "invalidNumber" , value:""};
 	
 	var checkRow = function ( row, value ){
 		var rowValue = rows[row][value];
@@ -63,13 +63,13 @@ var SUDOKU = ( function(){
 			return false;
 		}
 	}
-	
-	for ( var i = 0 ; i < N ; i++){
+	/*
+	for ( var i = 0 ; i <= N ; i++){
 		rows[i] = [];
 		columns[i] = [];
 		sections[i] = [];
 	}
-	
+	*/
 	
 	self.init = function ( config ) {
 		
@@ -77,6 +77,12 @@ var SUDOKU = ( function(){
 		onSuccesMove = config.succesfulMove ;
 		onfailureMove = config.failureMove ;
 		onCompleted = config.completed;
+		
+		for ( var i = 0 ; i <= N ; i++){
+			rows[i] = [];
+			columns[i] = [];
+			sections[i] = [];
+		}
 		
 	};
 	
@@ -106,32 +112,54 @@ var SUDOKU = ( function(){
 		
 		var validRow  = checkRow(  row , value  );
 		if ( validRow ){
-			rows[row][value] = true;
+			//rows[row][value] = true;
 		}else{
 			rowValidationError.value = value;
+			rowValidationError.section = section;
+			rowValidationError.column = column;
+			rowValidationError.row = row;
 			onfailureMove(rowValidationError);
 			return;
 		}
 		
 		var validColumn = checkColumn( column, value);
 		if ( validColumn ){
-			columns[column][value] =  true;
+			//columns[column][value] =  true;
 		}else{
 			columnValidationError.value = value;
+			columnValidationError.section = section;
+			columnValidationError.column = column;
+			columnValidationError.row = row;
 			onfailureMove(columnValidationError);
 			return;
 		}
 		
 		var validSection =  checkSection(section , value  );
 		if ( validSection ){
-			sections[section][value] = true;
+			//sections[section][value] = true;
 		}else{
 			sectionValidationError.value = value;
+			sectionValidationError.section = section;
+			sectionValidationError.column = column;
+			sectionValidationError.row = row;
 			onfailureMove(sectionValidationError);	
 			return;
 		}
-		success.value= value;
-		onSuccesMove( success );
+		
+		if ( validRow && validColumn && validSection ){
+			
+			rows[row][value] = true;
+			columns[column][value] =  true;
+			sections[section][value] = true;
+			
+			success.value= value;
+			success.section = section;
+			success.column = column;
+			success.row = row;
+			
+			onSuccesMove( success );
+			
+		}
 		
 		return;
 	};

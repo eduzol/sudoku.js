@@ -2,17 +2,49 @@ var VIEW = ( function(){
 
 	
 	var self = {};
+	var oldValue = '';
 	
 	var onSuccess  = function (result){
-		/* Manipulate DOM  */
 		console.log('success ' , result);
-		
+	};
+	
+	var restore = function (section , row, column , value ){
+		console.log('OLD value  ' + value  );
+		if (!value){
+			value = "&nbsp;";
+		}
+		console.log('value ' + value );
+		var node = $("<span contenteditable='true'>" + value +"</span>");  
+		$(".grid td[data-column='"+column+"'][data-row='"+row+"'][data-section='"+section+"']").empty().append(node);
+
 	};
 	
 	var onFailure = function (result){
 		/* Manipulate DOM */
 		console.log('failure ' , result);
+		var errorCode = result.code ;
 		
+		switch ( errorCode ){
+		/* column validation error */ 
+		case 0 :
+				$(".grid td[data-column='"+result.column+"']").attr("bgcolor", "yellow");
+				restore(result.section , result.row, result.column , oldValue );
+				setTimeout(function(){$(".grid td[data-column='"+result.column+"']").attr("bgcolor", "white"); }, 1500);
+				break;
+
+				/* row validation error */ 
+		case 1 :
+				$(".grid td[data-row='"+result.row+"']").attr("bgcolor", "yellow");
+				restore(result.section , result.row, result.column , oldValue );
+				setTimeout(function(){$(".grid td[data-row='"+result.row+"']").attr("bgcolor", "white"); }, 1500);
+				break;
+		
+		case 2 :
+				$(".grid td[data-section='"+result.section+"']").attr("bgcolor", "yellow");
+				restore(result.section , result.row, result.column , oldValue );
+				setTimeout(function(){$(".grid td[data-section='"+result.section+"']").attr("bgcolor", "white"); }, 1500);
+				break;
+		}
 		
 	};
 	
@@ -41,12 +73,12 @@ var VIEW = ( function(){
 		var column = cell.attr('data-column') ;
 		var value = parseInt( $(this).children('span').text()) ;
 		var isNumeric  = $.isNumeric( value );
-		var oldValue = value;
+		oldValue = value;
 		var newValue= String.fromCharCode(charCode);
 		
 		if ( value  && isNumeric ){
 			console.log('enters if ');
-			$(this).children('span').empty();
+			$(this).children('span').text('');
 		}
 		
 		//validate value 
@@ -54,30 +86,25 @@ var VIEW = ( function(){
 				    + " column " + column + " value " + newValue + " oldValue " + oldValue  ,  cell );
 	
 		SUDOKU.setMove( section ,  column,row, newValue);
-		
+	
 		
 	};
 	
 	self.init = function(){
 	
-		console.log('sudoku view  init ');
 		SUDOKU.init({
 			succesfulMove : onSuccess ,
 			failureMove : onFailure  , 
 			completed : onSuccess
 		});
 	
-		
 		$('.grid td').click(cellclicked);
-		
 		$('.grid td').keypress(keypressed);
 	};
 	
 	$( document ).ready(function() {
-		console.log('init ');
 		self.init();
 	});
-	
 	
 	return self;
 	
