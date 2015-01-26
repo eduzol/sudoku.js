@@ -85,7 +85,7 @@ var VIEW = ( function(){
 		console.log("cell was clicked, section  " +section+ " row " + row
 				    + " column " + column + " value " + newValue + " oldValue " + oldValue  ,  cell );
 	
-		SUDOKU.setMove( section ,  column,row, newValue);
+		SUDOKU.setMove( section ,  row, column,  newValue);
 	
 		
 	};

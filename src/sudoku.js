@@ -86,7 +86,7 @@ var SUDOKU = ( function(){
 		
 	};
 	
-	self.setMove  = function ( section , column , row  , value ){
+	self.setMove  = function ( section , row  ,column,  value ){
 
 		if ( !validateLimits(section )){
 			

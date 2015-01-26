@@ -8,7 +8,7 @@
  *   
  * });
  * 
- * SUDOKU.setMove( section , column , row  , value );
+ * SUDOKU.setMove( section , row  , column, value );
  *  
  */
 
@@ -67,7 +67,7 @@ QUnit.test( "unsuccesful move", function( assert ) {
 		completed : onCompleted 
 	});
 	SUDOKU.setMove( 1 , 1, 1, 3);
-	SUDOKU.setMove( 1 , 1, 2, 3);
+	SUDOKU.setMove( 1 , 2, 1, 3);
 	
 	
 	
@@ -115,9 +115,9 @@ QUnit.test( "idempotence test", function( assert ) {
 	
 	SUDOKU.setMove( 1 ,2, 2, 3);
 	
-	SUDOKU.setMove( 1 ,2, 1, 3);
+	SUDOKU.setMove( 1 ,1, 2, 3);
 	
-	SUDOKU.setMove( 1 ,2, 1, 3);
+	SUDOKU.setMove( 1 ,1, 2, 3);
 	
 	
 });
