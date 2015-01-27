@@ -4,11 +4,12 @@ For a running demo please visit [here](https://dl.dropboxusercontent.com/u/46968
 # Technology stack
 The following technologies were used for this application:
 * Grunt. Task manager for configuring development workflows in javascript
+* JSLint . Utility tool for validating javascript code quality and best practices
 * QUnit. Develop Javascript Tests
 * Sass. Modular CSS
 * Mustache. Template engine
 * JQuery. DOM manipulation  
-
+Additionally the application uses [module pattern](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript) extensively to encourage separation of concerns and modularity.
 
 # Running for the first time
 install node , then go to root folder
