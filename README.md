@@ -23,6 +23,16 @@ The API contains the following methods:
         });
   
         SUDOKU.setMove( section , row  , column, value );
+        
+        Callbacks are provided with a result object , i.e.:
+        {  
+                code : 0,  
+                message :"" , 
+                value : "" , 
+                section : "" , 
+                row : "" ,  
+                column :"" 
+        }
 
 
 # Project Structure
@@ -39,5 +49,15 @@ install node , then go to root folder
 * npm install grunt-contrib-sass --save-dev
 * npm install grunt-contrib-jshint --save-dev
 * grunt
+
+#Improvements / Known Issues
+* Improve Project strucutre to follow a [standard](http://docssa.info/#fileStructure) 
+* Not Tested on IOS
+* Backspace does not deletes value from the model
+* User interface testing with [karma](http://karma-runner.github.io/0.12/index.html)
+* Probably using a CSS framework like bootstrap.
+* Improve Mobile browser experience.
+* Completed event was not implemented
+* Implement automatic generation of sudokus
 
 
