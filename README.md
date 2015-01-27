@@ -1,15 +1,17 @@
 # sudoku.js
 For a running demo please visit [here](https://dl.dropboxusercontent.com/u/46968747/app.html).
+
 Feel free to visit my [linkedin profile](https://www.linkedin.com/in/eduardozola) 
 
 # Technology stack
 The following technologies were used for this application:
-* Grunt. Task manager for configuring development workflows in javascript
-* JSLint . Utility tool for validating javascript code quality and best practices
-* QUnit. Develop Javascript Tests
+* Grunt. Task manager for configuring and automating development workflows in javascript
+* JSLint . Utility tool for validating javascript code quality and best practices.
+* QUnit. Develop Javascript Tests. This is essential for code quality and speeds up development as well by not having to reload the webpage.
 * Sass. Modular CSS
 * Mustache. Template engine
-* JQuery. DOM manipulation  
+* JQuery. For Cross-Browser DOM manipulation 
+
 Additionally the application uses [module pattern](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript) extensively to encourage separation of concerns and modularity.
 
 # API
@@ -52,8 +54,8 @@ install node , then go to root folder
 
 #Improvements / Known Issues
 * Improve Project strucutre to follow a [standard](http://docssa.info/#fileStructure) 
-* Not Tested on IOS
-* Backspace does not deletes value from the model
+* Tested on IE 11, Firefox, Chrome, Android (Chrome). Not Tested on IOS
+* Backspace does not delete value from the model
 * User interface testing with [karma](http://karma-runner.github.io/0.12/index.html)
 * Probably using a CSS framework like bootstrap.
 * Improve Mobile browser experience.
