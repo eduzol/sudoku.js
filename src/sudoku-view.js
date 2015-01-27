@@ -227,6 +227,61 @@ var VIEW = ( function(){
 		
 	};
 	
+	
+	var generateTemplateValues  = function (){
+		
+		var row  = 0;
+		var section = 0 ;
+		var column = 1;
+		var elements = [];
+		var sectionAux = 1;
+		var renderTr = false;
+		for (  i = 0 ; i < 81 ; i++ ){
+			
+			renderTr = false;
+			var element = {};
+
+			if ( i % 3 == 0 ) {
+				section++;
+			}
+
+			if ( i % 9  == 0){
+				column = 1;
+				row++;
+				section = sectionAux;
+			}
+
+			if ( i % 27 == 0  && i != 0 ){
+				sectionAux += 3;
+				section = sectionAux;
+			}
+
+			if ( (i+1) % 9 == 0  && (i+1) != 0 ){
+				renderTr = true;
+			}
+
+			element.endtr = renderTr;
+			element.index = i+1;
+			element.row = row;
+			element.column = column;
+			element.section = section;
+			elements.push(element);
+			column++;
+			
+
+		}
+
+		return elements;
+	};
+	
+	var renderTemplate = function ( elements  ) {
+		
+		var template = $('#template').html();
+		var rendered = Mustache.render(template, {elements: elements});
+		$('#target').html(rendered);
+
+	};
+	
 	self.init = function(){
 	
 		SUDOKU.init({
@@ -234,11 +289,13 @@ var VIEW = ( function(){
 			failureMove : onFailure  , 
 			completed : onSuccess
 		});
-	
+		
+		var elements = generateTemplateValues();
+		renderTemplate(elements);
 		$('.grid td').click(cellclicked);
 		$('.grid td').keypress(keypressed);
-		
 		addDefaultValues();
+		
 	};
 	
 	$( document ).ready(function() {

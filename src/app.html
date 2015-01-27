@@ -3,111 +3,25 @@
 <head>
 <title>Sudoku App</title>
 <link href="main.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.js"></script>
 <script src="sudoku.js"></script>
 <script src="sudoku-view.js"></script>
 </head>
 <body>
+<span id="target"></span>
+<script id="template" type="x-tmpl-mustache">
 <table class="grid">
-  <tr>
-		<td data-section="1"  data-row="1"   data-column="1"  ><span  contenteditable='true'>&nbsp; </span> </td>
-		<td data-section="1"  data-row="1"   data-column="2"  ><span  contenteditable='true'>&nbsp; </span> </td>
-		<td data-section="1"  data-row="1"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="1"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="1"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="1"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="1"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="1"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="1"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-  <tr>
-		<td data-section="1"  data-row="2"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="1"  data-row="2"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="1"  data-row="2"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="2"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="2"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="2"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="2"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="2"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="2"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="1"  data-row="3"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="1"  data-row="3"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="1"  data-row="3"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="3"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="3"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="2"  data-row="3"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="3"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="3"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="3"  data-row="3"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="4"  data-row="4"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="4"  data-row="4"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="4"  data-row="4"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="4"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="4"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="4"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="4"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="4"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="4"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="4"  data-row="5"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="4"  data-row="5"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="4"  data-row="5"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="5"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="5"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="5"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="5"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="5"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="5"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="4"  data-row="6"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="4"  data-row="6"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="4"  data-row="6"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="6"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="6"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="5"  data-row="6"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="6"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="6"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="6"  data-row="6"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="7"  data-row="7"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="7"  data-row="7"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="7"  data-row="7"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="7"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="7"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="7"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="7"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="7"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="7"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="7"  data-row="8"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="7"  data-row="8"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="7"  data-row="8"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="8"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="8"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="8"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="8"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="8"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="8"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-    <tr>
-		<td data-section="7"  data-row="9"   data-column="1"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="7"  data-row="9"   data-column="2"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="7"  data-row="9"   data-column="3"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="9"   data-column="4"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="9"   data-column="5"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="8"  data-row="9"   data-column="6"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="9"   data-column="7"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="9"   data-column="8"  ><span  contenteditable='true'>&nbsp;</span> </td>
-		<td data-section="9"  data-row="9"   data-column="9"  ><span  contenteditable='true'>&nbsp;</span> </td>
-  </tr>
-</table>
+	<tr>
+	{{#elements}}
+		<td data-section="{{section}}"  data-row="{{row}}"   data-column="{{column}}"  ><span  contenteditable='true'>&nbsp;</span> </td>
+		{{#endtr}}
+	 		</tr>
+			<tr>
+		{{/endtr}}
+ 	{{/elements}}
+	</tr>
+</table> 
+</script>
 </body>
 </html>
