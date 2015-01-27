@@ -29,11 +29,11 @@ var VIEW = ( function(){
 	var onFailure = function (result){
 		/* Manipulate DOM */
 		var errorCode = result.code ;
-		
+		var line = {};
 		switch ( errorCode ){
 				/* column validation error */ 
 		case 0 :
-				var line =$(".grid td[data-column='"+result.column+"']"); 
+				line =$(".grid td[data-column='"+result.column+"']"); 
 				line.toggleClass("invalid");
 				setViewValue(result.section , result.row, result.column , oldValue );
 				setTimeout(function(){ line.toggleClass("invalid"); }, 1500);
@@ -41,14 +41,14 @@ var VIEW = ( function(){
 
 				/* row validation error */ 
 		case 1 :
-				var line = $(".grid td[data-row='"+result.row+"']");
+				line = $(".grid td[data-row='"+result.row+"']");
 				line.toggleClass("invalid");
 				setViewValue(result.section , result.row, result.column , oldValue );
 				setTimeout(function(){ line.toggleClass("invalid"); }, 1500);
 				break;
 				/* section validation error  */ 
 		case 2 :
-				var line = $(".grid td[data-section='"+result.section+"']");
+				line = $(".grid td[data-section='"+result.section+"']");
 				line.toggleClass("invalid");
 				setViewValue(result.section , result.row, result.column , oldValue );
 				setTimeout(function(){ line.toggleClass("invalid"); }, 1500);
@@ -80,7 +80,7 @@ var VIEW = ( function(){
 		var section = cell.attr('data-section');
 		var row = cell.attr('data-row') ;
 		var column = cell.attr('data-column') ;
-		var value = parseInt( $(this).children('span').text()) ;
+		value = parseInt( $(this).children('span').text()) ;
 		var isNumeric  = $.isNumeric( value );
 		oldValue = value;
 		var newValue= String.fromCharCode(charCode);
@@ -241,22 +241,22 @@ var VIEW = ( function(){
 			renderTr = false;
 			var element = {};
 
-			if ( i % 3 == 0 ) {
+			if ( i % 3 === 0 ) {
 				section++;
 			}
 
-			if ( i % 9  == 0){
+			if ( i % 9  === 0){
 				column = 1;
 				row++;
 				section = sectionAux;
 			}
 
-			if ( i % 27 == 0  && i != 0 ){
+			if ( i % 27 === 0  && i !== 0 ){
 				sectionAux += 3;
 				section = sectionAux;
 			}
 
-			if ( (i+1) % 9 == 0  && (i+1) != 0 ){
+			if ( (i+1) % 9 === 0  && (i+1) !== 0 ){
 				renderTr = true;
 			}
 

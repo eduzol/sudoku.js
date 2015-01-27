@@ -14,6 +14,10 @@ module.exports = function(grunt) {
       
       }
     }, 
+    
+   jshint: {
+        all: ['src/**/*.js', 'test/**/*.js']
+      },
    qunit: {
     		all: ['test/*.html']
   		} ,
@@ -36,8 +40,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-sass');
- 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  
   // Default task(s).
-  grunt.registerTask('default', ['uglify','qunit:all', 'sass']);
+  grunt.registerTask('default', ['uglify','jshint','qunit:all', 'sass']);
   
  }

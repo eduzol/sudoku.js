@@ -86,14 +86,14 @@ QUnit.test( "idempotence test", function( assert ) {
 	
 	var onFailure = function( result ){
 		
-		if ( result.code == 0 )
+		if ( result.code === 0 )
 		{
-			console.log('Column validation error '+ result.message + " value " + result.value )
+			console.log('Column validation error '+ result.message + " value " + result.value );
 			assert.ok(true, 'Column validation Error');
 			
 		}else{
 			
-			console.log('validation error '+ result.message + " value " + result.value )
+			console.log('validation error '+ result.message + " value " + result.value );
 			assert.ok(false, 'Not a column validation error');
 		}
 		

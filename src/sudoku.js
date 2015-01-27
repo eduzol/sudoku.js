@@ -43,7 +43,7 @@ var SUDOKU = ( function(){
 		}else{
 			return true;
 		}
-	}
+	};
 	
 	var checkSection = function( section , value ){
 		var sectionValue = sections[section][value];
@@ -53,7 +53,7 @@ var SUDOKU = ( function(){
 			return true;
 		}
 		
-	}
+	};
 	
 	var validateLimits  = function ( value ){
 		
@@ -62,7 +62,7 @@ var SUDOKU = ( function(){
 		}else{
 			return false;
 		}
-	}
+	};
 	
 	
 	self.init = function ( config ) {
